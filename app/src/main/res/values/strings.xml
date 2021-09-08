@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">To do list</string>
+    <string name="tasks">Tasks</string>
+    <string name="create_task">Create Task</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="hour">Hour</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_new_task">Add new task</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="you_don_t_have_tasks_yet">You don\'t have tasks yet.</string>
+    <string name="delete_task">Delete Task?</string>
+    <string name="task_deleted">Task deleted</string>
+    <string name="task_created">Task created</string>
+    <string name="update_task">Update Task</string>
+</resources>
