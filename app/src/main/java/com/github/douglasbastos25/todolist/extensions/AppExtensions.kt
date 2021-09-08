@@ -1,10 +1,8 @@
 package com.github.douglasbastos25.todolist.extensions
 
 import com.google.android.material.textfield.TextInputLayout
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeoutException
 
 private val locale = Locale("pt", "BR")
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">To do list</string>
+    <string name="tasks">Tarefas</string>
+    <string name="create_task">Criar tarefa</string>
+    <string name="title">Título</string>
+    <string name="date">Data</string>
+    <string name="hour">Hora</string>
+    <string name="cancel">Cancelar</string>
+    <string name="add_new_task">Adicionar nova tarefa</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Deletar</string>
+    <string name="you_don_t_have_tasks_yet">Você ainda não tem tarefas.</string>
+    <string name="task_deleted">Tarefa deletada</string>
+    <string name="task_created">Tarefa criada</string>
+    <string name="update_task">Tarefa atualizada</string>
+</resources>
