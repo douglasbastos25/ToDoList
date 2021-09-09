@@ -30,6 +30,9 @@
         android:id="@+id/til_title"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
+        app:errorEnabled="true"
+        app:helperTextEnabled="true"
+        app:helperText="@string/required_field"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/title"
@@ -38,6 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />

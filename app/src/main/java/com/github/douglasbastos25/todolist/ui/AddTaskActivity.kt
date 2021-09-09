@@ -1,6 +1,8 @@
 package com.github.douglasbastos25.todolist.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -55,6 +57,8 @@ class AddTaskActivity : AppCompatActivity() {
     }
 
     private fun insertListeners() {
+        binding.toolbar.setNavigationOnClickListener { finish() }
+
         binding.tilDate.editText?.setOnClickListener {
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
             datePicker.addOnPositiveButtonClickListener {
@@ -63,15 +67,12 @@ class AddTaskActivity : AppCompatActivity() {
                 binding.tilDate.text = Date(it + offset).format()
             }
             datePicker.show(supportFragmentManager, "DATE_PICKER")
-
         }
 
         binding.tilHour.editText?.setOnClickListener {
             val timePicker = MaterialTimePicker.Builder().build()
             timePicker.addOnPositiveButtonClickListener {
-
                 val time = "%02d:%02d".format(timePicker.hour, timePicker.minute)
-
                 binding.tilHour.text = time
             }
             timePicker.show(supportFragmentManager, "TIME_PICKER")
@@ -80,36 +81,52 @@ class AddTaskActivity : AppCompatActivity() {
         binding.btnCancel.setOnClickListener { finish() }
 
         binding.btnSaveTask.setOnClickListener {
-
-            if (taskForUpdate == null) {
-                mainViewModel.insert(
-                    Task(
-                        title = binding.tilTitle.text,
-                        time = binding.tilHour.text,
-                        date = binding.tilDate.text
+            if (binding.tilTitle.text.isNotBlank()) {
+                if (taskForUpdate == null) {
+                    mainViewModel.insert(
+                        Task(
+                            title = binding.tilTitle.text,
+                            time = binding.tilHour.text,
+                            date = binding.tilDate.text
+                        )
                     )
-                )
-                Toast.makeText(
-                    this@AddTaskActivity,
-                    getString(R.string.task_created),
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                taskForUpdate?.let {
+                    Toast.makeText(
+                        this@AddTaskActivity,
+                        getString(R.string.task_created),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    finish()
 
-                    with(it) {
-                        title = binding.tilTitle.text
-                        time = binding.tilHour.text
-                        date = binding.tilDate.text
+                } else {
+                    taskForUpdate?.let {
+
+                        with(it) {
+                            title = binding.tilTitle.text
+                            time = binding.tilHour.text
+                            date = binding.tilDate.text
+                        }
                     }
+                    mainViewModel.update(taskForUpdate!!)
+                    Toast.makeText(this@AddTaskActivity, "Tasked Updated", Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
                 }
-                mainViewModel.update(taskForUpdate!!)
-                Toast.makeText(this@AddTaskActivity, "Tasked Updated", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.tilTitle.error = getString(R.string.required_field)
+            }
+        }
 
+        binding.inputTitle.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
-            finish()
-        }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                binding.tilTitle.error = null
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
 
     }
 

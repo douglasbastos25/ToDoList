@@ -13,4 +13,5 @@
     <string name="task_deleted">Task deleted</string>
     <string name="task_created">Task created</string>
     <string name="update_task">Update Task</string>
+    <string name="required_field">* Required Field</string>
 </resources>
